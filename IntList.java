@@ -1,6 +1,9 @@
+/* this simple intlist data structue implement two functions: 1. size():get the size of this list through iteration and recursion. 
+** 2.square the list head by four method respectively: recursion/iteration destructively/non-distructively
+**/
+
 public class IntList{
-    
-	int head;
+    int head;
     IntList tail;
 
     public IntList(int head, IntList tail){
@@ -8,30 +11,15 @@ public class IntList{
         this.tail = tail;
     }
     
-    public static void main(String[] args){
-        IntList L = new IntList(5,null);
-        L = new IntList(10,L);
-        L = new IntList(15,L);
-
-        System.out.println(L.head);
-      //System.out.println(L.tail);
-       // Size s = new Size();
-        System.out.println(L.size());
-
-
-    }
-    
-
-    //using recusion
+    //get the size of intlist by recusion
     public int size(){
         if(tail == null){
             return 0;
         }
         return 1+tail.size();
- 
     }
 
-    // no recursion
+    // get the size of intlist though iteration
     /*
     public int size(){
         IntList list = this;
@@ -54,9 +42,9 @@ public class IntList{
      	 	m = m.tail;
      	}
      	 return L;
-    }
+     }
 
-    //square intlist destructively using recursion
+      //square intlist destructively using recursion
 	public static IntList square2(IntList L) {
 		if(L == null) return null;
 		else{
@@ -87,6 +75,30 @@ public class IntList{
      	IntList m = new IntList(L.head*L.head,tail); 
      	return m;
     }
-     
 }
 
+// the main function to test this IntList
+/*
+	public static void main(String[] args) {
+		//instantiate a intlist
+		IntList L = new IntList(5, null);
+		L = new IntList(10, L);
+		L = new IntList(15, L);
+		L = new IntList(20, L);
+       //original intlist before squaring 
+		IntList n = L;
+		while (n != null) {
+			System.out.print(n.head + ",");
+			n = n.tail;
+		}
+		System.out.println("\n---------------");
+		
+        // intlist after squaring
+		IntList m = square4(L);
+		IntList am = m;
+		while (am != null) {
+			System.out.print(am.head + ",");
+			am = am.tail;
+		}
+	}
+*/
