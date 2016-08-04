@@ -11,7 +11,7 @@ public class NBody{
 	}
 
 	//Given a file name, it returns an array of Planets corresponding to the planets in the file
- 	public Planet[] readPlanets(String file){
+ 	public static Planet[] readPlanets(String file){
 
  		In in = new In(file);
  		// get the num of planets/
