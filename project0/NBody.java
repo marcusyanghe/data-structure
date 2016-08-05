@@ -33,5 +33,48 @@ public class NBody{
 
 		return p;
  	}
+    
+    public static void main(String[] args){
+        if(args.length == 0){
+            System.out.println("Lack more info. Please supply three argument: t, dt,and a filename.");
+            System.out.println("e.g, java NBody 15778800.0 25000.0 data/planets.txt");
 
-}
+            // System.exit ends the program early.
+            System.exit(0);
+        }
+        
+        double T = Double.parseDouble(args[0]);
+        double dt = Double.parseDouble(args[1]);
+        
+        //Read in the planets and the universe radius from the file described by filename
+        String filename = args[2];
+        double radius = readRadius(filename);
+        Planet[] p = readPlanets(filename);
+        int n = p.length;
+        //store the array of netforces
+        Double[] netXf = new Double[n];
+        Double[] netYf = new Double[n];
+
+        //set the scale of universe according to the radius. The size of window/canvas is 512*512 pixel by default. 
+        //The universe pic applied here is also 512*512 pixel
+        StdDraw.setScale(-radius, radius);
+        //insert the audio file
+        StdAudio.play("audio/2001.mid");
+
+        
+        //draw each one of the planets in the planets array you created.
+        double t = 0;
+        while(t<=T){
+            //reset the background repeatedly to overpose the one before
+            StdDraw.picture(0.0, 0.0, "starfield.jpg");
+            for(int i=0;i<n;i++){
+                netXf[i] = p[i].calcNetForceExertedByX(p);
+                netYf[i] = p[i].calcNetForceExertedByY(p);
+                p[i].update(dt,netXf[i],netYf[i]);
+        	    p[i].draw();
+            }
+        	t+=dt;
+        }//close while 
+
+    }//close main
+}//close class

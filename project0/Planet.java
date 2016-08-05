@@ -87,6 +87,20 @@ public class Planet {
      		return net;
 	}
 
+	//determines how much the forces exerted on the planet will cause that planet to accelerate,
+	// and the resulting change in the planet's velocity and position in a small period of time dt.
+	public void update(double time, double netFx, double netFy){
+			xxVel += time * netFx / mass;
+			yyVel += time * netFy / mass;
+			xxPos += time * xxVel;
+			yyPos += time * yyVel;
+
+	}
+
+	public void draw( ){
+		StdDraw.picture(this.xxPos,this.yyPos,this.imgFileName);
+	}
+
 
 }
 
